@@ -1,0 +1,9 @@
+fastapi
+mongoengine
+scikit-learn
+uvicorn
+python-dotenv
+pandas
+redis
+pytest
+apscheduler
