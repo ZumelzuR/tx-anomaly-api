@@ -13,7 +13,7 @@ ML_MODEL_PATH = os.path.join('ml', 'model.pkl')
 config = {
     'high_amout_threshold': 5000,
     'multiple_avg_threshold': 10,
-    'ml_high_threshold': -0.5,
+    'ml_high_threshold': -0.52,
     'ml_medium_threshold': -0.2,
 }
 

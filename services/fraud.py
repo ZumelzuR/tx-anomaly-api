@@ -216,14 +216,13 @@ class FraudService:
             ml_score = self.predict(transaction, last_transaction, user_stats, last_loc_transaction)
         
             # if ml score is low, we apply the rule based prediction
-            if ml_score < CONFIG['ml_low_threshold']:
-                flags, reasons = self._rule_based_prediction(transaction, is_same_location_1h, user_stats)
-                if ml_score < CONFIG['ml_high_threshold']:
-                    flags.append('high')
-                    reasons.append('Ml model flagged transaction as high anomaly')
-                elif ml_score > CONFIG['ml_medium_threshold']:
-                    flags.append('medium')
-                    reasons.append('Ml model flagged transaction as medium anomaly')
+            # Apply ML flags based on score thresholds
+            if ml_score < CONFIG['ml_high_threshold']:
+                flags.append('high')
+                reasons.append('Ml model flagged transaction as high anomaly')
+            elif ml_score < CONFIG['ml_medium_threshold']:
+                flags.append('medium')
+                reasons.append('Ml model flagged transaction as medium anomaly')
 
         if 'high' in flags:
             risk_level = 'high'
